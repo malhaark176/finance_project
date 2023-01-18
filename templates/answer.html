@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h4>The result for {{quote}} is :  </h4>
+
+    <img src="data:image/png;base64,{{ img_data }}"/>
+
+    <br>
+
+    <p>The total amount earned is ${{ amount| round(2,'common') }}</p>
+
+    <ul style="text-align: left;">
+        <li>The first graph shows the daily profit whenever the share is bought. It is calculated as: Profit = Closing price of tomorrow - Closing price of today. It can be negative, zero or positive.</li>
+        <li> The second graph is the cumulative sum of the profit gained and has been labelled as "Wealth".</li>
+
+    </ul>
+
+    <br>
+ 
+{% endblock %}

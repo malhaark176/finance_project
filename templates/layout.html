@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="intial-scale=1", width="device-width">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Finance Project</title>
+    </head>
+
+    <body style="text-align: center;">
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">Home</a>
+            </div>
+        </nav>
+        <br>
+
+        <h1>Finance Project</h1>
+        <main>
+            <p>
+                <ul style="text-align: left; display: inline-block;">
+                    <li>This webpage will allow you to simulate a trading strategy where you buy a stock of the ticker symbol you submit whenever the the 10-day Moving Average (MA-10)
+                        is higher than 50-day Moving Average (MA-50). In technical analysis, it is believed by some traders that if MA-10 is greater than MA-50, the stock has the potential to go up in the next several days. 
+                    </li>
+                    <br>
+                    <li>When you submit the ticker symbol, the backend code will calculate the MA-10 and MA-50 of the stock price for the past 6 months and emulate buying and 
+                        holding a stock whenever MA-10 is greater than MA-50.  
+                    </li>
+                </ul>
+            </p>
+        </main>
+
+        {% block body %}{% endblock %}
+
+    </body>
+
+    <footer style="text-align: right; font-size: small; position: fixed; left: 10px; bottom: 5px; right: 10px;  ">Created by Malhaar Kasodekar</footer>
+</html>

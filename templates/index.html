@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <h4>Please enter the ticker symbol below:</h4>
+        <form action="/ticker" method="post">
+            <input type="text" required autofocus name="ticker" placeholder="Ticker (eg. MSFT, NFLX)">
+            <button type="submit">Submit</button>
+        </form>
+
+{% endblock %}
+    

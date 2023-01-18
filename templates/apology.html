@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h5> The ticker you entered is invalid. Please try again!</h5>
+    <h4>Please enter the ticker below:</h4>
+        <form action="/ticker" method="post">
+            <input type="text" required autofocus name="ticker" placeholder="Ticker">
+            <button type="submit">Submit</button>
+        </form>
+
+{% endblock %}
