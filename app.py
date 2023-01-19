@@ -1,4 +1,3 @@
-from logging import exception
 from flask import Flask, render_template, request
 import yfinance as yf
 import pandas as pd
