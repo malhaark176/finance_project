@@ -20,28 +20,26 @@ def ticker():
     if request.method == "GET":
         return render_template("index.html")
     elif request.method=="POST":
-        try:    
-            quote = request.form.get("ticker")
-            stock = yf.Ticker(quote)
-            data = stock.history(period="6mo")
-            if 'Empty DataFrame' in str(data):
-                raise Exception
-        except:
-            return render_template("apology.html")
-        table = pd.DataFrame(data)
-        table["MA10"] = table["Close"].rolling(10).mean()
-        table["MA50"] = table["Close"].rolling(50).mean()
-        table = table.dropna() 
-        table["Buy"]=[1 if table.loc[ei,"MA10"]>table.loc[ei,"MA50"] else 0 for ei in table.index]
-        table["Close1"]=table["Close"].shift(-1)
-        table["Profit"]=[table.loc[ei,"Close1"]- table.loc[ei,"Close"] if table.loc[ei,"Buy"]==1 else 0 for ei in table.index]
-        table['Profit'] = table['Profit'].astype(float)
-        table['Wealth']=np.cumsum(table['Profit'])
-        amount = table.loc[table.index[-2],"Wealth"]
-        table = table.reset_index()
-        return render_template("answer.html", quote=quote, img_data=plot(quote,table),img_data_2=plot(quote,table), amount=amount)
-            
+                quote = request.form.get("ticker")
+                stock = yf.Ticker(quote)
+                data = stock.history(period="6mo")
+                if 'Empty DataFrame' in str(data):
+                        return render_template("apology.html")
+                table = pd.DataFrame(data)
+                table["MA10"] = table["Close"].rolling(10).mean()
+                table["MA50"] = table["Close"].rolling(50).mean()
+                table = table.dropna() 
+                table["Buy"]=[1 if table.loc[ei,"MA10"]>table.loc[ei,"MA50"] else 0 for ei in table.index]
+                table["Close1"]=table["Close"].shift(-1)
+                table["Profit"]=[table.loc[ei,"Close1"]- table.loc[ei,"Close"] if table.loc[ei,"Buy"]==1 else 0 for ei in table.index]
+                table['Profit'] = table['Profit'].astype(float)
+                table['Wealth']=np.cumsum(table['Profit'])
+                amount = table.loc[table.index[-2],"Wealth"]
+                table = table.reset_index()
+                return render_template("answer.html", quote=quote, img_data=plot(quote,table),img_data_2=plot(quote,table), amount=amount)
 
+
+        
 def plot(quote, table):
     plt.figure(figsize=(10,4))
     plt.subplot(1, 2, 1)
